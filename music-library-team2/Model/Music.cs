@@ -10,7 +10,12 @@ namespace music_library_team2.Model
 {
     public enum Genre
     {
-
+        Rock,
+        Jazz,
+        Soul,
+        pop,
+        hiphop,
+        country
     }
     public  class Music
     {
