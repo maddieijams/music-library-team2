@@ -1,5 +1,7 @@
-﻿using System;
+﻿using music_library_team2.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +24,11 @@ namespace music_library_team2
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<Music> Musics = new ObservableCollection<Music>;
         public MainPage()
         {
             this.InitializeComponent();
+            MusicManager.GetAllMusics(Musics);
         }
     }
 }
