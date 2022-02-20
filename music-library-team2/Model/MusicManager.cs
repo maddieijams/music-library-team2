@@ -22,6 +22,13 @@ namespace music_library_team2.Model
             musicsLists.ForEach(m=> musics.Add(m));
         }
 
+        public static void GetGenrs(ObservableCollection<Genre> genrs, ObservableCollection<Music>music)
+        {
+            genrs.Clear();
+           var distinctGenrs= music.Select(m => m.Genre).Distinct().ToList();
+            distinctGenrs.ForEach(g=> genrs.Add(g));
+        }
+
         public static void GetMusicsByGenre(ObservableCollection<Music> musics, Genre genre)
         {
             musics.Clear();
