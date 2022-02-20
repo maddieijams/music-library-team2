@@ -24,11 +24,15 @@ namespace music_library_team2
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private ObservableCollection<Music> Musics = new ObservableCollection<Music>;
+        private ObservableCollection<Music> Musics = new ObservableCollection<Music>();
+        private ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
         public MainPage()
         {
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
+            MusicManager.GetGenrs(this.Genres, this.Musics);
+
+
         }
     }
 }
