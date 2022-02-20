@@ -15,5 +15,8 @@ namespace music_library_team2.Model
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public String FullName => $"{this.FirstName} {this.LastName}";
+
     }
 }
