@@ -1,42 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace music_library_team2.Model
+﻿namespace music_library_team2.Model
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    /// <summary>
+    /// Defines the <see cref="MusicManager" />.
+    /// </summary>
     public static class MusicManager
     {
+        /// <summary>
+        /// The AddSongtoMusics.
+        /// </summary>
+        /// <param name="song">The song<see cref="Music"/>.</param>
+        /// <param name="musics">The musics<see cref="ObservableCollection{Music}"/>.</param>
+        public static void AddSongtoMusics(Music song, ObservableCollection<Music> musics)
+        {
+            musics.Add(new Music(song.Title, song.Singer, song.RelaseYear, song.Genre, song.FilePath, song.CoverPictureFilePath));
+        }
 
-
-
-
-        //public ObservableCollection<Music> Music { get; set; }
-
-        public static void GetAllMusics(ObservableCollection<Music>musics)
+        /// <summary>
+        /// The GetAllMusics.
+        /// </summary>
+        /// <param name="musics">The musics<see cref="ObservableCollection{Music}"/>.</param>
+        public static void GetAllMusics(ObservableCollection<Music> musics)
         {
             musics.Clear();
             var musicsLists = GetMusicLists();
-            musicsLists.ForEach(m=> musics.Add(m));
+            musicsLists.ForEach(m => musics.Add(m));
         }
 
-        public static void GetGenrs(ObservableCollection<Genre> genrs, ObservableCollection<Music>music)
+        /// <summary>
+        /// The GetGenrs.
+        /// </summary>
+        /// <param name="genrs">The genrs<see cref="ObservableCollection{Genre}"/>.</param>
+        /// <param name="music">The music<see cref="ObservableCollection{Music}"/>.</param>
+        public static void GetGenrs(ObservableCollection<Genre> genrs, ObservableCollection<Music> music)
         {
             genrs.Clear();
-           var distinctGenrs= music.Select(m => m.Genre).Distinct().ToList();
-            distinctGenrs.ForEach(g=> genrs.Add(g));
+            var distinctGenrs = music.Select(m => m.Genre).Distinct().ToList();
+            distinctGenrs.ForEach(g => genrs.Add(g));
         }
 
+        /// <summary>
+        /// The GetMusicsByGenre.
+        /// </summary>
+        /// <param name="musics">The musics<see cref="ObservableCollection{Music}"/>.</param>
+        /// <param name="genre">The genre<see cref="Genre"/>.</param>
         public static void GetMusicsByGenre(ObservableCollection<Music> musics, Genre genre)
         {
             musics.Clear();
             var musicsLists = GetMusicLists();
-           var filtredMusics= musicsLists.Where(m => m.Genre == genre).ToList();
-            filtredMusics.ForEach(m=> musics.Add(m));
+            var filtredMusics = musicsLists.Where(m => m.Genre == genre).ToList();
+            filtredMusics.ForEach(m => musics.Add(m));
         }
 
+        /// <summary>
+        /// The GetMusicLists.
+        /// </summary>
+        /// <returns>The <see cref="List{Music}"/>.</returns>
         private static List<Music> GetMusicLists()
         {
             var musics = new List<Music>()
@@ -48,6 +70,5 @@ namespace music_library_team2.Model
             };
             return musics;
         }
-       
     }
 }
