@@ -59,11 +59,9 @@
                     </Style>
                 </Grid.Resources>
 
-                <TextBox PlaceholderText="Enter a title" Header="Title: "  Grid.Row="0" Height="Auto" Grid.RowSpan="1" Grid.ColumnSpan="2"  />
-                <TextBox PlaceholderText="Enter an artist" Header="Artist: "  Grid.Row="1" Height="Auto"  Grid.ColumnSpan="2" />
-                <ComboBox SelectionChangedTrigger="Always" SelectionChanged="GenreComboBox_SelectionChanged" Name="GenreComboBox" PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" 
-                    
-                          />
+                <TextBox Name="Title" PlaceholderText="Enter a title" Header="Title: "  Grid.Row="0" Height="Auto" Grid.RowSpan="1" Grid.ColumnSpan="2"  />
+                <TextBox Name="Singer" PlaceholderText="Enter an artist" Header="Artist: "  Grid.Row="1" Height="Auto"  Grid.ColumnSpan="2" />
+                <ComboBox Name="GenreComboBox" SelectionChangedTrigger="Always" SelectionChanged="GenreComboBox_SelectionChanged"  PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" />
                 <TextBox PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="3" Height="Auto"  Grid.ColumnSpan="2" />
                 <TextBox PlaceholderText="Enter the cover image url" Header="Release Year: "  Grid.Row="4" Height="Auto"  Grid.ColumnSpan="2" />
                 <TextBox PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="5" Height="Auto"  Grid.Column="0" />
