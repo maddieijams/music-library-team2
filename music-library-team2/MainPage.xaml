@@ -65,32 +65,46 @@
                 <TextBlock Name="OutputTextBlock" Grid.Row="5" Text="sfsd" />
             </Grid>
         </ContentDialog>
-
+    <!--
         <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
-        <GridView
-            Grid.Row="1"
+        -->
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
+            <MediaElement Name="SoundMedia" AutoPlay="True" />
+            <GridView
             Grid.Column="2"
             IsItemClickEnabled="True"
-            ItemsSource="{x:Bind Musics}">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="data:Music">
-                    <StackPanel>
-                        <Image
+            ItemsSource="{x:Bind Musics}"
+              
+            ItemClick="GridView_ItemClick">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Music">
+                        <Border BorderThickness="2" BorderBrush="LightGray" Margin="10,10,10,10">
+                        <StackPanel Padding="20,20,20,20">
+                            <Image
                             Name="SoundImage"
                             Width="101"
                             Height="112"
                             Source="{x:Bind CoverPictureFilePath}" />
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10,0,4,0" Text="Artist:" />
-                            <TextBlock Text="{x:Bind Singer.FullName}" />
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="10,0,4,0" Text="Title:" />
-                                <TextBlock Text="{x:Bind Title}" />
+                            <StackPanel Orientation="Vertical">
+                                    <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
+                                    <TextBlock Text="{x:Bind Singer.FullName}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
+                                    <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
+                                    <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
+                                    <TextBlock Text="{x:Bind Singer.FullName}" />
+                               
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+                        </Border>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
     </Grid>
 </Page>
