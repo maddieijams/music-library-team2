@@ -18,7 +18,7 @@
         {
             musics.Add(new Music(song.Title, song.Singer, song.RelaseYear, song.Genre, song.FilePath, song.CoverPictureFilePath));
         }
-
+       
         /// <summary>
         /// The GetAllMusics.
         /// </summary>

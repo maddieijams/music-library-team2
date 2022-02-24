@@ -123,5 +123,13 @@
 
             }
         }
+
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var music = (Music)e.ClickedItem;
+            SoundMedia.Source = new Uri(music.FilePath);
+
+        }
+
     }
 }
