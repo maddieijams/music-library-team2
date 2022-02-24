@@ -23,7 +23,17 @@
         /// </summary>
         private ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
 
-        // private Action<Music, ObservableCollection<Music>> AddSong;
+        /// <summary>
+        /// Defines the comboBoxGenres.
+        /// </summary>
+        private static readonly string[] comboBoxGenres = {        "Rock",
+        "Jazz",
+        "Soul",
+        "Pop",
+        "Hiphop",
+        "Country"
+    };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
@@ -32,6 +42,10 @@
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
             MusicManager.GetGenrs(this.Genres, this.Musics);
+
+
+            GenreComboBox.ItemsSource = comboBoxGenres;
+
         }
 
         /// <summary>
@@ -49,18 +63,10 @@
         /// </summary>
         /// <param name="sender">The sender<see cref="object"/>.</param>
         /// <param name="e">The e<see cref="RoutedEventArgs"/>.</param>
+        /// // TODO: delete?
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog.Hide();
-        }
-
-        /// <summary>
-        /// The AddSong.
-        /// </summary>
-        /// <param name="song">The song<see cref="Music"/>.</param>
-        public void AddSong(Music song)
-        {
-            MusicManager.AddSongtoMusics(song, Musics);
         }
 
         /// <summary>
@@ -89,6 +95,32 @@
             else
             {
                 OutputTextBlock.Text = "Operation cancelled.";
+            }
+        }
+
+        /// <summary>
+        /// The ContentDialog_PrimaryButtonClick.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="ContentDialog"/>.</param>
+        /// <param name="args">The args<see cref="ContentDialogButtonClickEventArgs"/>.</param>
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine(GenreComboBox.SelectedItem);
+            System.Diagnostics.Debug.WriteLine(args.ToString());
+            System.Diagnostics.Debug.WriteLine("hjkjhgkh");
+
+        }
+
+        private void GenreComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(GenreComboBox.SelectedItem);
+
+            if (GenreComboBox.SelectedItem != null)
+            {
+                Console.WriteLine(e.AddedItems[0]);
+                GenreComboBox.SelectedValue = e.AddedItems[0];
+                
+
             }
         }
     }

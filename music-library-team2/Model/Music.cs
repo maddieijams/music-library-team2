@@ -14,12 +14,12 @@ namespace music_library_team2.Model
         Rock,
         Jazz,
         Soul,
-        pop,
-        hiphop,
-        country
+        Pop,
+        Hiphop,
+        Country
 
     }
-    public  class Music
+    public class Music
     {
 
         public Music(string  title, Singer singer,  int relaseYear, Genre genre, string filePath, string CoverPictureFilePath)
