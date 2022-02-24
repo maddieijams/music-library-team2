@@ -21,12 +21,18 @@
         /// <summary>
         /// Defines the Genres.
         /// </summary>
-        private ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
+        private ObservableCollection<string> Genres = new ObservableCollection<string>();
+
+        /// <summary>
+        /// Defines the filePath.
+        /// </summary>
+        private string filePath;
 
         /// <summary>
         /// Defines the comboBoxGenres.
         /// </summary>
-        private static readonly string[] comboBoxGenres = {        "Rock",
+        private static readonly string[] comboBoxGenres = {
+        "Rock",
         "Jazz",
         "Soul",
         "Pop",
@@ -41,11 +47,10 @@
         {
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
-            MusicManager.GetGenrs(this.Genres, this.Musics);
+            // MusicManager.GetGenrs(this.Genres, this.Musics);
 
 
             GenreComboBox.ItemsSource = comboBoxGenres;
-
         }
 
         /// <summary>
@@ -63,7 +68,6 @@
         /// </summary>
         /// <param name="sender">The sender<see cref="object"/>.</param>
         /// <param name="e">The e<see cref="RoutedEventArgs"/>.</param>
-        /// // TODO: delete?
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog.Hide();
@@ -81,16 +85,21 @@
 
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
+            openPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            string[] fileFormats = { ".mp4", ".flac", ".mp3", ".m4a", ".wav", ".wma", ".aac" };
+            foreach (string x in fileFormats)
+            {
+                openPicker.FileTypeFilter.Add(x);
+            }
+
+
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
                 // The StorageFile has read/write access to the picked file.
                 // See the FileAccess sample for code that uses a StorageFile to read and write.
                 OutputTextBlock.Text = "Picked photo: " + file.Name;
+                filePath = file.Path;
             }
             else
             {
@@ -109,27 +118,21 @@
             System.Diagnostics.Debug.WriteLine(args.ToString());
             System.Diagnostics.Debug.WriteLine("hjkjhgkh");
 
-        }
-
-        private void GenreComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine(GenreComboBox.SelectedItem);
-
             if (GenreComboBox.SelectedItem != null)
             {
-                Console.WriteLine(e.AddedItems[0]);
-                GenreComboBox.SelectedValue = e.AddedItems[0];
-                
-
+                MusicManager.AddSongtoMusics(new Music(Title.Text, "Frank Ocean", short.Parse(ReleaseYear.Text), GenreComboBox.SelectedItem.ToString(), filePath, CoverPictureFilePath.Text), Musics);
             }
         }
 
+        /// <summary>
+        /// The GridView_ItemClick.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="ItemClickEventArgs"/>.</param>
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var music = (Music)e.ClickedItem;
             SoundMedia.Source = new Uri(music.FilePath);
-
         }
-
     }
 }

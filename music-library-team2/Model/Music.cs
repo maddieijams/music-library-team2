@@ -9,20 +9,22 @@ using System;
 namespace music_library_team2.Model
 {
     // There are more genre but these are enough for our project.
-    public enum Genre
+    // enum not best approach since we want the strings, Could figure out how to use a static class of constants instead
+    /* public enum Genre
     {
-        Rock,
-        Jazz,
+        Rock ,
+        Jazz ,
         Soul,
         Pop,
         Hiphop,
         Country
 
-    }
+    } */
+
     public class Music
     {
 
-        public Music(string  title, Singer singer,  int relaseYear, Genre genre, string filePath, string CoverPictureFilePath)
+        public Music(string  title, string singer,  int relaseYear, string genre, string filePath, string CoverPictureFilePath)
         {
             this.Title = title;
             this.Singer = singer;   
@@ -33,11 +35,11 @@ namespace music_library_team2.Model
 
         }
         public string Title { get; set; }
-        public Singer Singer { get; set; }
+        public string Singer { get; set; }
         public int RelaseYear{ get; set; }
         public string FilePath { get; set; }    
         public string CoverPictureFilePath { get; set; }
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
 
 
 

@@ -61,12 +61,11 @@
 
                 <TextBox Name="Title" PlaceholderText="Enter a title" Header="Title: "  Grid.Row="0" Height="Auto" Grid.RowSpan="1" Grid.ColumnSpan="2"  />
                 <TextBox Name="Singer" PlaceholderText="Enter an artist" Header="Artist: "  Grid.Row="1" Height="Auto"  Grid.ColumnSpan="2" />
-                <ComboBox Name="GenreComboBox" SelectionChangedTrigger="Always" SelectionChanged="GenreComboBox_SelectionChanged"  PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" />
-                <TextBox PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="3" Height="Auto"  Grid.ColumnSpan="2" />
-                <TextBox PlaceholderText="Enter the cover image url" Header="Release Year: "  Grid.Row="4" Height="Auto"  Grid.ColumnSpan="2" />
-                <TextBox PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="5" Height="Auto"  Grid.Column="0" />
-                <Button x:Name="UploadButton" Grid.Row="6" Click="PickAFileButton_Click">Choose a file</Button>
-                <TextBlock Name="OutputTextBlock" Grid.Row="6" Grid.Column="1"  Text="sfsd" />
+                <ComboBox Name="GenreComboBox" PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" />
+                <TextBox Name="ReleaseYear" PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="3" Height="Auto"  Grid.ColumnSpan="2" />
+                <TextBox Name="CoverPictureFilePath" PlaceholderText="Enter the cover image url" Header="Cover Image: "  Grid.Row="4" Height="Auto"  Grid.ColumnSpan="2" />
+                <Button x:Name="UploadButton" Grid.Row="5" Click="PickAFileButton_Click">Choose a file</Button>
+                <TextBlock  Name="OutputTextBlock" Grid.Row="5" Grid.Column="1"  Text="" />
             </Grid>
         </ContentDialog>
     <!--
@@ -97,11 +96,11 @@
                             Source="{x:Bind CoverPictureFilePath}" />
                             <StackPanel Orientation="Vertical">
                                     <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
-                                    <TextBlock Text="{x:Bind Singer.FullName}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Singer}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind Singer.FullName}" />
+                                    <TextBlock Text="{x:Bind Singer}" />
                                
                             </StackPanel>
                         </StackPanel>
