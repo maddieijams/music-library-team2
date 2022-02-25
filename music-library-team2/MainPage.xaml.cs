@@ -21,9 +21,25 @@
         /// <summary>
         /// Defines the Genres.
         /// </summary>
-        private ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
+        private ObservableCollection<string> Genres = new ObservableCollection<string>();
 
-        // private Action<Music, ObservableCollection<Music>> AddSong;
+        /// <summary>
+        /// Defines the filePath.
+        /// </summary>
+        private string filePath;
+
+        /// <summary>
+        /// Defines the comboBoxGenres.
+        /// </summary>
+        private static readonly string[] comboBoxGenres = {
+        "Rock",
+        "Jazz",
+        "Soul",
+        "Pop",
+        "Hiphop",
+        "Country"
+    };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
@@ -31,7 +47,10 @@
         {
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
-            MusicManager.GetGenrs(this.Genres, this.Musics);
+            // MusicManager.GetGenrs(this.Genres, this.Musics);
+
+
+            GenreComboBox.ItemsSource = comboBoxGenres;
         }
 
         /// <summary>
@@ -55,15 +74,6 @@
         }
 
         /// <summary>
-        /// The AddSong.
-        /// </summary>
-        /// <param name="song">The song<see cref="Music"/>.</param>
-        public void AddSong(Music song)
-        {
-            MusicManager.AddSongtoMusics(song, Musics);
-        }
-
-        /// <summary>
         /// The PickAFileButton_Click.
         /// </summary>
         /// <param name="sender">The sender<see cref="object"/>.</param>
@@ -75,16 +85,21 @@
 
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
+            openPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            string[] fileFormats = { ".mp4", ".flac", ".mp3", ".m4a", ".wav", ".wma", ".aac" };
+            foreach (string x in fileFormats)
+            {
+                openPicker.FileTypeFilter.Add(x);
+            }
+
+
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
                 // The StorageFile has read/write access to the picked file.
                 // See the FileAccess sample for code that uses a StorageFile to read and write.
                 OutputTextBlock.Text = "Picked photo: " + file.Name;
+                filePath = file.Path;
             }
             else
             {
@@ -92,11 +107,32 @@
             }
         }
 
+        /// <summary>
+        /// The ContentDialog_PrimaryButtonClick.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="ContentDialog"/>.</param>
+        /// <param name="args">The args<see cref="ContentDialogButtonClickEventArgs"/>.</param>
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine(GenreComboBox.SelectedItem);
+            System.Diagnostics.Debug.WriteLine(args.ToString());
+            System.Diagnostics.Debug.WriteLine("hjkjhgkh");
+
+            if (GenreComboBox.SelectedItem != null)
+            {
+                MusicManager.AddSongtoMusics(new Music(Title.Text, "Frank Ocean", short.Parse(ReleaseYear.Text), GenreComboBox.SelectedItem.ToString(), filePath, CoverPictureFilePath.Text), Musics);
+            }
+        }
+
+        /// <summary>
+        /// The GridView_ItemClick.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="ItemClickEventArgs"/>.</param>
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var music = (Music)e.ClickedItem;
             SoundMedia.Source = new Uri(music.FilePath);
-
         }
     }
 }
