@@ -12,9 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition  Height="70"/>
             <RowDefinition  Height="*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="All musics"  Margin="50,20,20,0" FontSize="20" FontWeight="Bold"/>
+        <Button Content="All musics"  Margin="50,20,20,0" FontSize="20" FontWeight="Bold" Visibility="Collapsed" Name="AllMusicButton"  Background="Transparent" Click="AllMusicButton_Click" />
         <Grid  Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition  />
@@ -25,8 +26,6 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
-       
 
         <ContentDialog x:Name="ContentDialog"
         Title="Add a Song"
@@ -65,48 +64,40 @@
                 <TextBlock  Name="OutputTextBlock" Grid.Row="5" Grid.Column="1"  Text="" />
             </Grid>
         </ContentDialog>
-    <!--
-        <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
-        -->
+   
+        
         
         <Grid>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="130"/>
-               
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
-                
             </Grid.ColumnDefinitions>
-           
-            
-            <SplitView Grid.Row="0"
+                <!--<ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" IsItemClickEnabled="True" ItemClick="GenrList_ItemClick" /> -->
+                <SplitView Grid.Row="0"
                    Name="MySplitView"
                    DisplayMode="CompactOverlay"
                    OpenPaneLength="120">
-                <SplitView>
-                    <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
+                    <SplitView>
+                        <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
                       Grid.Column="0"
                        IsItemClickEnabled="True"
                       ItemClick="GenrList_ItemClick">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Genre">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind }" FontSize="17" />
-                        </StackPanel>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="data:Genre">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{x:Bind }" FontSize="17" />
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </SplitView>
-                
-</SplitView>
+
+                </SplitView>
 
 
-            <MediaElement Name="SoundMedia" AutoPlay="True"
-                          AreTransportControlsEnabled="True" 
-                        Stretch="None" Grid.Column="1"/>
-
-            <GridView
+                <GridView
                 Grid.Column="2"
            
             IsItemClickEnabled="True"
@@ -140,6 +131,9 @@
             </GridView>
         </Grid>
     </Grid>
+        <MediaElement Name="SoundMedia" AutoPlay="True"
+                          AreTransportControlsEnabled="True" 
+                        Stretch="None" Grid.Row="2" Visibility="Collapsed"/>
         <Button 
         HorizontalAlignment="Right"
         Height="50" Width="150"
@@ -147,7 +141,7 @@
         Content="Add a Song"
         FontSize="20"
         x:Name="AddSongBtn"
-        Grid.Row="2" 
+        Grid.Row="3" 
         Click="AddSongBtn_Click"/>
     </Grid>
 </Page>
