@@ -21,7 +21,7 @@
         /// <summary>
         /// Defines the Genres.
         /// </summary>
-        private ObservableCollection<string> Genres = new ObservableCollection<string>();
+        private ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
 
         /// <summary>
         /// Defines the filePath.
@@ -31,14 +31,16 @@
         /// <summary>
         /// Defines the comboBoxGenres.
         /// </summary>
-        private static readonly string[] comboBoxGenres = {
+       /* private static readonly string[] comboBoxGenres = {
         "Rock",
         "Jazz",
         "Soul",
         "Pop",
         "Hiphop",
         "Country"
-    };
+    }; */
+
+        private Array comboBoxGenres = Enum.GetValues(typeof(Genre));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
@@ -47,7 +49,7 @@
         {
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
-            // MusicManager.GetGenrs(this.Genres, this.Musics);
+            MusicManager.GetGenrs(Genres, Musics);
 
 
             GenreComboBox.ItemsSource = comboBoxGenres;
@@ -120,7 +122,7 @@
 
             if (GenreComboBox.SelectedItem != null)
             {
-                MusicManager.AddSongtoMusics(new Music(Title.Text, "Frank Ocean", short.Parse(ReleaseYear.Text), GenreComboBox.SelectedItem.ToString(), filePath, CoverPictureFilePath.Text), Musics);
+                MusicManager.AddSongtoMusics(new Music(Title.Text, "Frank Ocean", short.Parse(ReleaseYear.Text), (Genre)GenreComboBox.SelectedItem, filePath, CoverPictureFilePath.Text), Musics);
             }
         }
 
