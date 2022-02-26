@@ -8,8 +8,14 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
-
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="70"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="All musics"  Margin="50,20,20,0" FontSize="20" FontWeight="Bold"/>
+        <Grid  Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition  />
             <RowDefinition  />
@@ -20,16 +26,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Button 
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Height="100" Width="250"
-        Content="Add a Song"
-        FontSize="30px"
-        x:Name="AddSongBtn"
-        Grid.Row="0" 
-        Grid.Column="1"
-        Click="AddSongBtn_Click"/>
+       
 
         <ContentDialog x:Name="ContentDialog"
         Title="Add a Song"
@@ -142,5 +139,15 @@
                 </GridView.ItemTemplate>
             </GridView>
         </Grid>
+    </Grid>
+        <Button 
+        HorizontalAlignment="Right"
+        Height="50" Width="150"
+         Margin="0,0,50,50"
+        Content="Add a Song"
+        FontSize="20"
+        x:Name="AddSongBtn"
+        Grid.Row="2" 
+        Click="AddSongBtn_Click"/>
     </Grid>
 </Page>
