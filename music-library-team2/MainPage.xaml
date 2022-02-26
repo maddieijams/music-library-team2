@@ -71,25 +71,62 @@
     <!--
         <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
         -->
+        
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="120"/>
+               
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
+                
             </Grid.ColumnDefinitions>
-            <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
-            <MediaElement Name="SoundMedia" AutoPlay="True" />
+           
+            
+            <SplitView Grid.Row="0"
+                   Name="MySplitView"
+                   DisplayMode="CompactOverlay"
+                  
+                   OpenPaneLength="100">
+                <SplitView>
+                    <ListView x:Name="GenrList" ItemsSource="{x:Bind MenuGenres}"
+                      Grid.Column="0"
+                       IsItemClickEnabled="True"
+                      ItemClick="GenrList_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:GenreMenu">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind GenreCategory}" FontSize="17" />
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                    </SplitView>
+                
+</SplitView>
+            
+            
+            <MediaElement Name="SoundMedia" AutoPlay="True"
+                          AreTransportControlsEnabled="True" 
+                        Stretch="None" Grid.Column="1"
+                          
+                       
+                           /> 
             <GridView
-            Grid.Column="2"
+                Grid.Column="2"
+           
             IsItemClickEnabled="True"
             ItemsSource="{x:Bind Musics}"
               
-            ItemClick="GridView_ItemClick">
+            ItemClick="GridView_ItemClick"
+                >
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Music">
                         <Border BorderThickness="2" BorderBrush="LightGray" Margin="10,10,10,10">
                         <StackPanel Padding="20,20,20,20">
-                            <Image
+                                
+                         
+                                    <Image
                             Name="SoundImage"
                             Width="101"
                             Height="112"
@@ -103,6 +140,7 @@
                                     <TextBlock Text="{x:Bind Singer}" />
                                
                             </StackPanel>
+
                         </StackPanel>
                         </Border>
                     </DataTemplate>
