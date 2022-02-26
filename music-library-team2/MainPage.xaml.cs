@@ -2,6 +2,7 @@
 {
     using music_library_team2.Model;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Windows.Media.Core;
     using Windows.Media.Playback;
@@ -43,9 +44,8 @@
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
             MusicManager.GetGenrs(Genres, Musics);
-
-
-            GenreComboBox.ItemsSource = comboBoxGenres;
+            List<Genre> allGeners = Enum.GetValues(typeof(Genre)).Cast<Genre>().ToList();
+            GenreComboBox.ItemsSource = allGeners;
         }
 
         /// <summary>
@@ -125,6 +125,7 @@
         /// <param name="e">The e<see cref="ItemClickEventArgs"/>.</param>
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            SoundMedia.Visibility= Visibility.Visible;
             var music = (Music)e.ClickedItem;
             //SoundMedia.Source = new Uri(music.FilePath);
 
@@ -132,6 +133,20 @@
             mediaPlayer.AutoPlay = true;
             mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(music.FilePath));
             mediaPlayer.Play();
+        }
+
+        private void GenrList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AllMusicButton.Visibility= Visibility.Visible;
+            var menuGenre = (Genre)e.ClickedItem;
+            MusicManager.GetMusicsByGenre(Musics, menuGenre);
+        }
+
+        private void AllMusicButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            MusicManager.GetAllMusics(Musics);
+            AllMusicButton.Visibility = Visibility.Collapsed;
         }
     }
 }
