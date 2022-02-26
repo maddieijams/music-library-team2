@@ -3,6 +3,8 @@
     using music_library_team2.Model;
     using System;
     using System.Collections.ObjectModel;
+    using Windows.Media.Core;
+    using Windows.Media.Playback;
     using Windows.Storage;
     using Windows.Storage.Pickers;
     using Windows.UI.Xaml;
@@ -31,15 +33,6 @@
         /// <summary>
         /// Defines the comboBoxGenres.
         /// </summary>
-       /* private static readonly string[] comboBoxGenres = {
-        "Rock",
-        "Jazz",
-        "Soul",
-        "Pop",
-        "Hiphop",
-        "Country"
-    }; */
-
         private Array comboBoxGenres = Enum.GetValues(typeof(Genre));
 
         /// <summary>
@@ -94,7 +87,6 @@
                 openPicker.FileTypeFilter.Add(x);
             }
 
-
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
@@ -122,7 +114,7 @@
 
             if (GenreComboBox.SelectedItem != null)
             {
-                MusicManager.AddSongtoMusics(new Music(Title.Text, "Frank Ocean", short.Parse(ReleaseYear.Text), (Genre)GenreComboBox.SelectedItem, filePath, CoverPictureFilePath.Text), Musics);
+                MusicManager.AddSongtoMusics(new Music(Title.Text, Singer.Text, short.Parse(ReleaseYear.Text), (Genre)GenreComboBox.SelectedItem, filePath, CoverPictureFilePath.Text), Musics);
             }
         }
 
@@ -134,7 +126,12 @@
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var music = (Music)e.ClickedItem;
-            SoundMedia.Source = new Uri(music.FilePath);
+            //SoundMedia.Source = new Uri(music.FilePath);
+
+            var mediaPlayer = new MediaPlayer();
+            mediaPlayer.AutoPlay = true;
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(music.FilePath));
+            mediaPlayer.Play();
         }
     }
 }
