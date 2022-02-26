@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Windows.Storage;
     using Windows.Storage.Pickers;
     using Windows.UI.Xaml;
@@ -29,41 +30,17 @@
         /// </summary>
         private string filePath;
 
-        /// <summary>
-        /// Defines the comboBoxGenres.
-        /// </summary>
-       /* private static readonly string[] comboBoxGenres = {
-        "Rock",
-        "Jazz",
-        "Soul",
-        "Pop",
-        "Hiphop",
-        "Country"
-    }; */
-
-        private Array comboBoxGenres = Enum.GetValues(typeof(Genre));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
-        private List<GenreMenu> MenuGenres;
         public MainPage()
         {
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
             MusicManager.GetGenrs(Genres, Musics);
-
-
-            GenreComboBox.ItemsSource = comboBoxGenres;
-            MenuGenres = new List<GenreMenu>();
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Country });
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Jazz });
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Pop });
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Hiphop });
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Rock });
-            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Soul });
-        
-
+            List<Genre> allGeners = Enum.GetValues(typeof(Genre)).Cast<Genre>().ToList();
+            GenreComboBox.ItemsSource = allGeners;
         }
 
         /// <summary>
@@ -150,8 +127,8 @@
 
         private void GenrList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var menuGenre = (GenreMenu)e.ClickedItem;
-            MusicManager.GetMusicsByGenre(Musics, menuGenre.GenreCategory);
+            var menuGenre = (Genre)e.ClickedItem;
+            MusicManager.GetMusicsByGenre(Musics, menuGenre);
 
 
         }

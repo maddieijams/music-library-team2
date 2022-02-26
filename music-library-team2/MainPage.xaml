@@ -74,7 +74,7 @@
         
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="130"/>
                
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
@@ -85,17 +85,16 @@
             <SplitView Grid.Row="0"
                    Name="MySplitView"
                    DisplayMode="CompactOverlay"
-                  
-                   OpenPaneLength="100">
+                   OpenPaneLength="120">
                 <SplitView>
-                    <ListView x:Name="GenrList" ItemsSource="{x:Bind MenuGenres}"
+                    <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
                       Grid.Column="0"
                        IsItemClickEnabled="True"
                       ItemClick="GenrList_ItemClick">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:GenreMenu">
+                    <DataTemplate x:DataType="data:Genre">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind GenreCategory}" FontSize="17" />
+                            <TextBlock Text="{x:Bind }" FontSize="17" />
                         </StackPanel>
                         
                     </DataTemplate>
@@ -104,14 +103,12 @@
                     </SplitView>
                 
 </SplitView>
-            
-            
+
+
             <MediaElement Name="SoundMedia" AutoPlay="True"
                           AreTransportControlsEnabled="True" 
-                        Stretch="None" Grid.Column="1"
-                          
-                       
-                           /> 
+                        Stretch="None" Grid.Column="1"/>
+
             <GridView
                 Grid.Column="2"
            
@@ -132,13 +129,11 @@
                             Height="112"
                             Source="{x:Bind CoverPictureFilePath}" />
                             <StackPanel Orientation="Vertical">
-                                    <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
+                                    <SymbolIcon Symbol="Play" Margin="0,0,12,0"/>
                                     <TextBlock Text="{x:Bind Singer}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind Singer}" />
-                               
                             </StackPanel>
 
                         </StackPanel>
