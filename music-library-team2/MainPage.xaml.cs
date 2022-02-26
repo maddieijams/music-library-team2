@@ -2,7 +2,9 @@
 {
     using music_library_team2.Model;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Windows.Storage;
     using Windows.Storage.Pickers;
     using Windows.UI.Xaml;
@@ -28,19 +30,6 @@
         /// </summary>
         private string filePath;
 
-        /// <summary>
-        /// Defines the comboBoxGenres.
-        /// </summary>
-       /* private static readonly string[] comboBoxGenres = {
-        "Rock",
-        "Jazz",
-        "Soul",
-        "Pop",
-        "Hiphop",
-        "Country"
-    }; */
-
-        private Array comboBoxGenres = Enum.GetValues(typeof(Genre));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
@@ -50,9 +39,8 @@
             this.InitializeComponent();
             MusicManager.GetAllMusics(Musics);
             MusicManager.GetGenrs(Genres, Musics);
-
-
-            GenreComboBox.ItemsSource = comboBoxGenres;
+            List<Genre> allGeners = Enum.GetValues(typeof(Genre)).Cast<Genre>().ToList();
+            GenreComboBox.ItemsSource = allGeners;
         }
 
         /// <summary>
@@ -135,6 +123,14 @@
         {
             var music = (Music)e.ClickedItem;
             SoundMedia.Source = new Uri(music.FilePath);
+        }
+
+        private void GenrList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var menuGenre = (Genre)e.ClickedItem;
+            MusicManager.GetMusicsByGenre(Musics, menuGenre);
+
+
         }
     }
 }

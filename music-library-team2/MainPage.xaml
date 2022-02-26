@@ -71,38 +71,71 @@
     <!--
         <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
         -->
+        
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="130"/>
+               
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
+                
             </Grid.ColumnDefinitions>
-            <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" />
-            <MediaElement Name="SoundMedia" AutoPlay="True" />
+           
+            
+            <SplitView Grid.Row="0"
+                   Name="MySplitView"
+                   DisplayMode="CompactOverlay"
+                   OpenPaneLength="120">
+                <SplitView>
+                    <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
+                      Grid.Column="0"
+                       IsItemClickEnabled="True"
+                      ItemClick="GenrList_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Genre">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind }" FontSize="17" />
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                    </SplitView>
+                
+</SplitView>
+
+
+            <MediaElement Name="SoundMedia" AutoPlay="True"
+                          AreTransportControlsEnabled="True" 
+                        Stretch="None" Grid.Column="1"/>
+
             <GridView
-            Grid.Column="2"
+                Grid.Column="2"
+           
             IsItemClickEnabled="True"
             ItemsSource="{x:Bind Musics}"
               
-            ItemClick="GridView_ItemClick">
+            ItemClick="GridView_ItemClick"
+                >
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Music">
                         <Border BorderThickness="2" BorderBrush="LightGray" Margin="10,10,10,10">
                         <StackPanel Padding="20,20,20,20">
-                            <Image
+                                
+                         
+                                    <Image
                             Name="SoundImage"
                             Width="101"
                             Height="112"
                             Source="{x:Bind CoverPictureFilePath}" />
                             <StackPanel Orientation="Vertical">
-                                    <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
+                                    <SymbolIcon Symbol="Play" Margin="0,0,12,0"/>
                                     <TextBlock Text="{x:Bind Singer}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
                                     <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind Singer}" />
-                               
                             </StackPanel>
+
                         </StackPanel>
                         </Border>
                     </DataTemplate>
