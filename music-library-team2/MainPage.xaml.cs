@@ -2,6 +2,7 @@
 {
     using music_library_team2.Model;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Windows.Storage;
     using Windows.Storage.Pickers;
@@ -45,6 +46,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
+        private List<GenreMenu> MenuGenres;
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,6 +55,15 @@
 
 
             GenreComboBox.ItemsSource = comboBoxGenres;
+            MenuGenres = new List<GenreMenu>();
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Country });
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Jazz });
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Pop });
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Hiphop });
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Rock });
+            MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Soul });
+        
+
         }
 
         /// <summary>
@@ -135,6 +146,14 @@
         {
             var music = (Music)e.ClickedItem;
             SoundMedia.Source = new Uri(music.FilePath);
+        }
+
+        private void GenrList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var menuGenre = (GenreMenu)e.ClickedItem;
+            MusicManager.GetMusicsByGenre(Musics, menuGenre.GenreCategory);
+
+
         }
     }
 }
