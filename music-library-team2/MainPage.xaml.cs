@@ -62,10 +62,7 @@
             MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Hiphop });
             MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Rock });
             MenuGenres.Add(new GenreMenu { GenreCategory = Genre.Soul });
-            SoundMedia.Visibility = Visibility.Collapsed;
-            Back.Visibility = Visibility.Collapsed;
-
-
+        
 
         }
 
@@ -148,27 +145,15 @@
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var music = (Music)e.ClickedItem;
-            
             SoundMedia.Source = new Uri(music.FilePath);
-            SoundMedia.Visibility = Visibility.Visible;
-
-           
-          
-
         }
 
         private void GenrList_ItemClick(object sender, ItemClickEventArgs e)
         {
             var menuGenre = (GenreMenu)e.ClickedItem;
             MusicManager.GetMusicsByGenre(Musics, menuGenre.GenreCategory);
-            Back.Visibility = Visibility.Visible;
 
-        }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            MusicManager.GetAllMusics(Musics);
-            Back.Visibility = Visibility.Collapsed;
         }
     }
 }

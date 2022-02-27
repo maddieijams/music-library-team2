@@ -74,42 +74,24 @@
         
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="120"/>
                
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
                 
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="Back" 
-                    
-                    FontFamily="Segoe MDL2 Assets"
-                    Content="&#xE80F;"
-                    Click="Back_Click"
-                    Width="150"
-                    Height="50"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    
-                    />
-
-
-
-            <SplitView Grid.Row="1"
+           
+            
+            <SplitView Grid.Row="0"
                    Name="MySplitView"
                    DisplayMode="CompactOverlay"
-                       
                   
                    OpenPaneLength="100">
                 <SplitView>
                     <ListView x:Name="GenrList" ItemsSource="{x:Bind MenuGenres}"
                       Grid.Column="0"
                        IsItemClickEnabled="True"
-                      ItemClick="GenrList_ItemClick" >
-                             
+                      ItemClick="GenrList_ItemClick">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:GenreMenu">
                         <StackPanel Orientation="Horizontal">
@@ -122,34 +104,16 @@
                     </SplitView>
                 
 </SplitView>
-
-
+            
+            
             <MediaElement Name="SoundMedia" AutoPlay="True"
                           AreTransportControlsEnabled="True" 
                         Stretch="None" Grid.Column="1"
-                          Width="300"
-                          MinWidth="100"
-                          Grid.Row="1"
-                          >
-                <MediaElement.TransportControls>
-                    <MediaTransportControls x:Name="customMTC"
-                                            IsFastForwardButtonVisible="True"
-                                            IsFastForwardEnabled="True"
-                                            IsFastRewindButtonVisible="True"
-                                            IsFastRewindEnabled="True"
-                                            IsPlaybackRateButtonVisible="True"
-                                            IsPlaybackRateEnabled="True"
-                                            IsCompact="True">
-                    </MediaTransportControls>
-                </MediaElement.TransportControls>
-
-            </MediaElement>
-                         
                           
                        
-                           
+                           /> 
             <GridView
-                Grid.Column="2" Grid.Row="1"
+                Grid.Column="2"
            
             IsItemClickEnabled="True"
             ItemsSource="{x:Bind Musics}"
