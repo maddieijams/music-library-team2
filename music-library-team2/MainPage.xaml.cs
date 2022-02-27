@@ -139,5 +139,7 @@
             MusicManager.GetAllMusics(Musics);
             AllMusicButton.Visibility = Visibility.Collapsed;
         }
+
+        
     }
 }
