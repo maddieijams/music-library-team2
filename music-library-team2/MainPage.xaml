@@ -17,17 +17,17 @@
         </Grid.RowDefinitions>
         <Button Content="All musics"  Margin="50,20,20,0" FontSize="20" FontWeight="Bold" Visibility="Collapsed" Name="AllMusicButton"  Background="Transparent" Click="AllMusicButton_Click" />
         <Grid  Grid.Row="1">
-        <Grid.RowDefinitions>
-            <RowDefinition  />
-            <RowDefinition  />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <ContentDialog x:Name="ContentDialog"
+            <ContentDialog x:Name="ContentDialog"
         Title="Add a Song"
         PrimaryButtonText="Add song"
         CloseButtonText="Cancel"
@@ -35,55 +35,55 @@
         PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
         Grid.Row="0" 
         Grid.Column="1">
-            <Grid x:Name="AddMusicGrid" Width="500" Height="500" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <Grid.RowDefinitions>
-                    <RowDefinition  Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition  />
+                <Grid x:Name="AddMusicGrid" Width="500" Height="500" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="0,0,0,15" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <TextBox Name="Title" PlaceholderText="Enter a title" Header="Title: "  Grid.Row="0" Height="Auto" Grid.RowSpan="1" Grid.ColumnSpan="2"  />
+                    <TextBox Name="Singer" PlaceholderText="Enter an artist" Header="Artist: "  Grid.Row="1" Height="Auto"  Grid.ColumnSpan="2" />
+                    <ComboBox Name="GenreComboBox" PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" />
+                    <TextBox Name="ReleaseYear" PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="3" Height="Auto"  Grid.ColumnSpan="2" />
+                    <TextBox Name="CoverPictureFilePath" PlaceholderText="Enter the cover image url" Header="Cover Image: "  Grid.Row="4" Height="Auto"  Grid.ColumnSpan="2" />
+                    <Button x:Name="UploadButton" Grid.Row="5" Click="PickAFileButton_Click">Choose a file</Button>
+                    <TextBlock  Name="OutputTextBlock" Grid.Row="5" Grid.Column="1"  Text="" />
+                </Grid>
+            </ContentDialog>
+
+
+
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="140"/>
+
+                    <ColumnDefinition Width="300" />
+
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="200" />
+
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid.Resources>
-                    <Style TargetType="TextBox">
-                        <Setter Property="Margin" Value="0,0,0,15" />
-                    </Style>
-                </Grid.Resources>
 
-                <TextBox Name="Title" PlaceholderText="Enter a title" Header="Title: "  Grid.Row="0" Height="Auto" Grid.RowSpan="1" Grid.ColumnSpan="2"  />
-                <TextBox Name="Singer" PlaceholderText="Enter an artist" Header="Artist: "  Grid.Row="1" Height="Auto"  Grid.ColumnSpan="2" />
-                <ComboBox Name="GenreComboBox" PlaceholderText="Choose a genre" Header="Genre: "  Grid.Row="2" Height="Auto"  Grid.ColumnSpan="2" />
-                <TextBox Name="ReleaseYear" PlaceholderText="Enter a release year" Header="Release Year: "  Grid.Row="3" Height="Auto"  Grid.ColumnSpan="2" />
-                <TextBox Name="CoverPictureFilePath" PlaceholderText="Enter the cover image url" Header="Cover Image: "  Grid.Row="4" Height="Auto"  Grid.ColumnSpan="2" />
-                <Button x:Name="UploadButton" Grid.Row="5" Click="PickAFileButton_Click">Choose a file</Button>
-                <TextBlock  Name="OutputTextBlock" Grid.Row="5" Grid.Column="1"  Text="" />
-            </Grid>
-        </ContentDialog>
-   
-        
-        
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="140"/>
-               
-                <ColumnDefinition Width="300" />
-
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="200" />
-
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="Back" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Back" 
                     
                     FontFamily="Segoe MDL2 Assets"
                     Content="&#xE80F;"
@@ -97,61 +97,61 @@
 
 
 
-            <SplitView Grid.Row="1"
+                <SplitView Grid.Row="1"
                    Name="MySplitView"
                    DisplayMode="CompactOverlay"
                        
                   
                    OpenPaneLength="100">
-                <SplitView>
-                    <ListView x:Name="GenrList" ItemsSource="{x:Bind MenuGenres}"
+                    <SplitView>
+                        <ListView x:Name="GenrList" ItemsSource="{x:Bind MenuGenres}"
                       Grid.Column="0"
                        IsItemClickEnabled="True"
                       ItemClick="GenrList_ItemClick" >
-                             
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:GenreMenu">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind GenreCategory}" FontSize="17" />
-                        </StackPanel>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-                <!--<ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" IsItemClickEnabled="True" ItemClick="GenrList_ItemClick" /> -->
-                <SplitView Grid.Row="0"
-                   Name="MySplitView"
-                   DisplayMode="CompactOverlay"
-                   OpenPaneLength="120">
-                    <SplitView>
-                        <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
-                      Grid.Column="0"
-                       IsItemClickEnabled="True"
-                      ItemClick="GenrList_ItemClick">
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="data:Genre">
+                                <DataTemplate x:DataType="data:GenreMenu">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{x:Bind }" FontSize="17" />
+                                        <TextBlock Text="{x:Bind GenreCategory}" FontSize="17" />
                                     </StackPanel>
 
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </SplitView>
 
-                </SplitView>
+                        <!--<ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}" IsItemClickEnabled="True" ItemClick="GenrList_ItemClick" /> -->
+                        <SplitView Grid.Row="0"
+                   Name="MySplitView"
+                   DisplayMode="CompactOverlay"
+                   OpenPaneLength="120">
+                            <SplitView>
+                                <ListView x:Name="GenrList" ItemsSource="{x:Bind Genres}"
+                      Grid.Column="0"
+                       IsItemClickEnabled="True"
+                      ItemClick="GenrList_ItemClick">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="data:Genre">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{x:Bind }" FontSize="17" />
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </SplitView>
+
+                        </SplitView>
 
 
-            <MediaElement Name="SoundMedia" AutoPlay="True"
+                        <MediaElement Name="SoundMedia" AutoPlay="True"
                           AreTransportControlsEnabled="True" 
                         Stretch="None" Grid.Column="1"
                           Width="300"
                           MinWidth="100"
                           Grid.Row="1"
                           >
-                <MediaElement.TransportControls>
-                    <MediaTransportControls x:Name="customMTC"
+                            <MediaElement.TransportControls>
+                                <MediaTransportControls x:Name="customMTC"
                                             IsFastForwardButtonVisible="True"
                                             IsFastForwardEnabled="True"
                                             IsFastRewindButtonVisible="True"
@@ -159,55 +159,55 @@
                                             IsPlaybackRateButtonVisible="True"
                                             IsPlaybackRateEnabled="True"
                                             IsCompact="True">
-                    </MediaTransportControls>
-                </MediaElement.TransportControls>
+                                </MediaTransportControls>
+                            </MediaElement.TransportControls>
 
-            </MediaElement>
-                         
-                          
-                       
-                           
-            <GridView
+                        </MediaElement>
+
+
+
+
+                        <GridView
                 Grid.Column="2" Grid.Row="1"
 
 
                 <GridView
                 Grid.Column="2"
 >
-           
-            IsItemClickEnabled="True"
+
+                            IsItemClickEnabled="True"
             ItemsSource="{x:Bind Musics}"
               
             ItemClick="GridView_ItemClick"
                 >
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Music">
-                        <Border BorderThickness="2" BorderBrush="LightGray" Margin="10,10,10,10">
-                        <StackPanel Padding="20,20,20,20">
-                                
-                         
-                                    <Image
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="data:Music">
+                                    <Border BorderThickness="2" BorderBrush="LightGray" Margin="10,10,10,10">
+                                        <StackPanel Padding="20,20,20,20">
+
+
+                                            <Image
                             Name="SoundImage"
                             Width="101"
                             Height="112"
                             Source="{x:Bind CoverPictureFilePath}" />
-                            <StackPanel Orientation="Vertical">
-                                    <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
-                                    <TextBlock Text="{x:Bind Singer}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
-                                    <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
-                                    <TextBlock Text="{x:Bind Singer}" />
-                               
-                            </StackPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
+                                                <TextBlock Text="{x:Bind Singer}"  FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
+                                                <TextBlock Text="{x:Bind Title}" TextAlignment="Center" />
+                                                <TextBlock Text="{x:Bind RelaseYear}" TextAlignment="Center" />
+                                                <TextBlock Text="{x:Bind Genre}" TextAlignment="Center" />
+                                                <TextBlock Text="{x:Bind Singer}" />
 
-                        </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+            </Grid>
         </Grid>
-    </Grid>
         <MediaElement Name="SoundMedia" AutoPlay="True"
                           AreTransportControlsEnabled="True" 
                         Stretch="None" Grid.Row="2" Visibility="Collapsed"/>
