@@ -10,16 +10,6 @@
     public static class MusicManager
     {
         /// <summary>
-        /// The AddSongtoMusics.
-        /// </summary>
-        /// <param name="song">The song<see cref="Music"/>.</param>
-        /// <param name="musics">The musics<see cref="ObservableCollection{Music}"/>.</param>
-        public static void AddSongtoMusics(Music song, ObservableCollection<Music> musics)
-        {
-            musics.Add(song);
-        }
-       
-        /// <summary>
         /// The GetAllMusics.
         /// </summary>
         /// <param name="musics">The musics<see cref="ObservableCollection{Music}"/>.</param>
